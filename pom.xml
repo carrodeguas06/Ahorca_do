@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.liceolapaz.bcdnob.ahorca_do/com.liceolapaz.bcdnob.ahorca_do.HelloApplication
+                                com.liceolapaz.bcdnob.ahorca_do/com.liceolapaz.bcdnob.ahorca_do.Application
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

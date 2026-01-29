@@ -3,7 +3,7 @@ package com.liceolapaz.bcdnob.ahorca_do;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class LogInController {
     @FXML
     private Label welcomeText;
 
