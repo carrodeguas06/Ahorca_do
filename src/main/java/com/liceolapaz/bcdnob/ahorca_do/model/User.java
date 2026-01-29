@@ -1,4 +1,4 @@
-package com.liceolapaz.bcdnob.ahorca_do.dao;
+package com.liceolapaz.bcdnob.ahorca_do.model;
 
 import jakarta.persistence.*;
 
