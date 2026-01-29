@@ -5,4 +5,8 @@ module com.liceolapaz.bcdnob.ahorca_do {
 
     opens com.liceolapaz.bcdnob.ahorca_do to javafx.fxml;
     exports com.liceolapaz.bcdnob.ahorca_do;
+    exports com.liceolapaz.bcdnob.ahorca_do.controllers;
+    opens com.liceolapaz.bcdnob.ahorca_do.controllers to javafx.fxml;
+    exports com.liceolapaz.bcdnob.ahorca_do.model;
+    opens com.liceolapaz.bcdnob.ahorca_do.model to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package com.liceolapaz.bcdnob.ahorca_do;
+package com.liceolapaz.bcdnob.ahorca_do.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
