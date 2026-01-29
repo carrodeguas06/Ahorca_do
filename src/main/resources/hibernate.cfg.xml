@@ -5,12 +5,13 @@
 <hibernate-configuration>
     <session-factory name="">
   <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost/ahorcado</property>
+  <property name="hibernate.connection.url">jdbc:mysql://192.168.15.162:3306/ahorcado</property>
   <property name="hibernate.connection.username">root</property>
   <property name="hibernate.default_schema">ahorcado</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.format_sql">true</property>
   <property name="hibernate.hbm2ddl.auto">create</property>
- </session-factory>
+        <mapping class="com.liceolapaz.bcdnob.ahorca_do.dao.User"/>
+    </session-factory>
 </hibernate-configuration>
