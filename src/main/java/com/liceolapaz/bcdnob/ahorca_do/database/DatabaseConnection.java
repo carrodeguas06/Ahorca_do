@@ -6,14 +6,16 @@ import org.hibernate.cfg.Configuration;
 
 public class DatabaseConnection {
 
-    private SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-    private Session session = sessionFactory.openSession();
+    private static SessionFactory sessionFactory;
 
-    public SessionFactory getSessionFactory() {
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            try {
+                sessionFactory = new Configuration().configure().buildSessionFactory();
+            } catch (Throwable ex) {
+                throw new ExceptionInInitializerError(ex);
+            }
+        }
         return sessionFactory;
-    }
-
-    public Session getSession() {
-        return session;
     }
 }

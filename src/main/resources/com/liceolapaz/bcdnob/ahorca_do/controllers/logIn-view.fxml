@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox id="login" alignment="CENTER" prefHeight="350.0" prefWidth="500.0" spacing="15.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.bcdnob.ahorca_do.controllers.LogInController">
+    <children>
+        <Label contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" text="Inicia Sesión" textAlignment="CENTER">
+            <font>
+                <Font name="DejaVu Sans Bold" size="25.0" />
+            </font>
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+        </Label>
+        <Label text="Nombre de usuarío:">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+        </Label>
+        <TextField fx:id="usuarioo" maxWidth="300.0" minWidth="300.0" promptText="Usuario" />
+        <Label text="Contraseña:">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <PasswordField fx:id="contrasena" maxWidth="300.0" minWidth="300.0" promptText="Contraseña" />
+        <Button fx:id="boton" onAction="#onClic" text="_Iniciar sesion" />
+        <Button fx:id="register" mnemonicParsing="false" onAction="#registerClic" text="No tengo cuenta" />
+    </children>
+</VBox>
