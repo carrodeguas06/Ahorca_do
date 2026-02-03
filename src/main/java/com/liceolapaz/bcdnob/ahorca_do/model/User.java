@@ -73,4 +73,24 @@ public class User {
         this.admin = admin;
     }
 
+    public User() {}
+
+    public User(String nickname, String password, Boolean admin) {
+        this.nickname = nickname;
+        this.password = password;
+        this.admin = admin;
+        this.nombre = nickname;
+        this.apellido = "";
+    }
+
+    public User(Integer id, String nombre, String apellido, String nickname, String password, Boolean admin) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.nickname = nickname;
+        this.password = password;
+        this.admin = admin;
+    }
+
+
 }
