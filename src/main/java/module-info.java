@@ -3,6 +3,8 @@ module com.liceolapaz.bcdnob.ahorca_do {
     requires javafx.fxml;
     requires org.hibernate.orm.core;
     requires jakarta.persistence;
+    requires java.naming;
+    requires javafx.graphics;
 
 
     opens com.liceolapaz.bcdnob.ahorca_do to javafx.fxml;
