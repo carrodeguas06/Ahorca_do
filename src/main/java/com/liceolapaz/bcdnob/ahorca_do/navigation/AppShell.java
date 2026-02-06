@@ -72,4 +72,8 @@ public class AppShell {
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
+
+    public void setPrimaryStage(Stage stage) {
+        this.primaryStage = stage;
+    }
 }
