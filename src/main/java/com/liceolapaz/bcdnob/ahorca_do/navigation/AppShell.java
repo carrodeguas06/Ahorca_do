@@ -41,6 +41,11 @@ public class AppShell {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(view.getFxmlPath()));
             Parent viewNode = loader.load();
+            try {
+                String cssPath = getClass().getResource("/styles/styles.css").toExternalForm();
+                viewNode.getStylesheets().add(cssPath);
+            } catch (NullPointerException e) {
+            }
 
             primaryStage.setTitle(view.getTitle());
 
@@ -53,6 +58,7 @@ public class AppShell {
             Object controller = loader.getController();
 
             controllers.put(view, controller);
+
 
             return controller;
         } catch (IOException e) {

@@ -27,7 +27,7 @@ public class UserService {
 
     public void registrarusuario(String nickname, String password, Boolean admin) throws Exception {
         if(userDAO.getUserByName(nickname).isPresent()){
-        throw new Exception("NOMBRE YA EXISTENTE");
+        throw new Exception("This nickname is already taken");
         }
 
         String hashedPassword= hashPassword(password);
@@ -60,12 +60,9 @@ public class UserService {
             byte[] hash = md.digest(password.getBytes());
             return Base64.getEncoder().encodeToString(hash);
         }catch (NoSuchAlgorithmException e){
-            throw  new RuntimeException("Error al hashear la contraseña", e);
+            throw  new RuntimeException("Hash error", e);
         }
     }
-
-
-
     private boolean verifyPassword (String inputPassword, String storedHash) {
         return hashPassword(inputPassword).equals(storedHash);
     }

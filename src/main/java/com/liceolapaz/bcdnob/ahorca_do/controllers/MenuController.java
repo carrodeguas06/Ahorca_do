@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
 public class MenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     public void handlePlay(ActionEvent actionEvent) {

@@ -26,13 +26,13 @@
                 <Insets />
             </VBox.margin>
         </Label>
-        <TextField fx:id="usuarioo" maxWidth="300.0" minWidth="300.0" promptText="Usuario" />
+        <TextField fx:id="user" maxWidth="300.0" minWidth="300.0" promptText="Usuario" />
         <Label text="Contraseña:">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <PasswordField fx:id="contrasena" maxWidth="300.0" minWidth="300.0" promptText="Contraseña" />
+        <PasswordField fx:id="password" maxWidth="300.0" minWidth="300.0" promptText="Contraseña" />
         <Button fx:id="boton" onAction="#onClic" text="_Iniciar sesion" />
         <Button fx:id="register" mnemonicParsing="false" onAction="#registerClic" text="No tengo cuenta" />
     </children>

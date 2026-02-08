@@ -22,19 +22,17 @@ public class Application extends javafx.application.Application {
 
         Scene scene = new Scene(new Pane(), 800, 500);
 
-        // 4. Cargar el CSS de forma segura
         try {
             String cssPath = getClass().getResource("/styles/styles.css").toExternalForm();
             scene.getStylesheets().add(cssPath);
         } catch (NullPointerException e) {
-            System.err.println("Error: No se encontró el archivo styles.css en /resources/styles/");
         }
 
         try {
             Image icon = new Image(getClass().getResourceAsStream("/images/icon.png"));
             stage.getIcons().add(icon);
         } catch (Exception e) {
-            System.err.println("Aviso: No se pudo cargar el icono, usando el de por defecto.");
+
         }
 
         stage.setScene(scene);

@@ -2,9 +2,9 @@ package com.liceolapaz.bcdnob.ahorca_do.navigation;
 
 public enum AppView {
 
-    AHORCADO("/com/liceolapaz/bcdnob/ahorca_do/ahorcado-view.fxml", "Juego Ahorcado"),
+    AHORCADO("/com/liceolapaz/bcdnob/ahorca_do/ahorcado-view.fxml", "Ahorca.do"),
 
-    LOGIN("/com/liceolapaz/bcdnob/ahorca_do/logIn-view.fxml", "Login System");
+    LOGIN("/com/liceolapaz/bcdnob/ahorca_do/logIn-view.fxml", "Iniciar Sesión"),;
 
     private final String fxmlPath;
     private final String title;
