@@ -1,8 +1,8 @@
-
 #menu {
     -fx-background-image: url("../images/menu.png");
     -fx-background-size: 100% 150%;
 }
+
 
 #menuGame .button
 {
@@ -15,17 +15,13 @@
 
 #menuGame .button:hover
 {
-    -fx-background-color: #616161;
-    -fx-text-fill: #333333;
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
 }
 
-#menuGame
+#menuGame, .background
 {
-    -fx-background-image: url("../images/blackboard.jpg");
-    -fx-background-size: 100% 100%;
-}
-
-.background {
     -fx-background-image: url("../images/blackboard.jpg");
     -fx-background-size: 100% 100%;
 }
@@ -48,7 +44,6 @@
     -fx-font-weight: bold;
 }
 
-
 #menuButton {
     -fx-font-family: "Comic Sans MS";
     -fx-font-weight: bold;
@@ -58,6 +53,7 @@
 }
 
 #menuButton:hover {
-    -fx-background-color: #616161;
-    -fx-text-fill: #333333;
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
 }
