@@ -25,7 +25,7 @@ public class UserService {
         return Optional.empty();
     }
 
-    public void registrarusuario(String nickname, String password, String nombre, String apellido) throws Exception {
+    public void registrarusuario(String nombre, String apellido, String nickname, String password) throws Exception {
         if(userDAO.getUserByName(nickname).isPresent()){
         throw new Exception("This nickname is already taken");
         }
