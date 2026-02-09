@@ -21,6 +21,7 @@ public class User {
     private String nickname;
 
     @Column(name = "password", nullable = false)
+    @Convert(converter = EncryptionConverter.class)
     private String password;
 
     @Column(name = "admin", nullable = false)

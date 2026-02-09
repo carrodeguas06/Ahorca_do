@@ -37,7 +37,7 @@ public class RegisterController {
         }
         else
         {
-            userService.registrarusuario(txtNickname.getText(),txtPassword.getText(),txtNombre.getText(),txtApellido.getText());
+            userService.registrarusuario(txtNombre.getText(),txtApellido.getText(),txtNickname.getText(),txtPassword.getText());
         }
     }
 }
