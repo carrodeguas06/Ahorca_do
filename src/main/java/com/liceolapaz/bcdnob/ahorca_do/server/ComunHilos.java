@@ -7,14 +7,16 @@ public class ComunHilos {
      int ACTUALES;
      int MAXIMO;
      Socket[] tabla;
-
+     String mensajes;
      public ComunHilos(int maximo, int actuales, int conexiones, Socket[] tabla) {
          this.MAXIMO = maximo;
          this.ACTUALES = actuales;
          this.CONEXIONES = conexiones;
          this.tabla = tabla;
+         this.mensajes = "";
      }
 
+     public ComunHilos() {}
 
      public synchronized int getCONEXIONES() {
          return CONEXIONES;
@@ -24,6 +26,13 @@ public class ComunHilos {
          CONEXIONES = conexiones;
      }
 
+     public synchronized String getMensajes() {
+         return mensajes;
+     }
+
+     public synchronized void setMensajes(String mensajes) {
+         this.mensajes = mensajes;
+     }
 
      public synchronized int getACTUALES() {
          return ACTUALES;
