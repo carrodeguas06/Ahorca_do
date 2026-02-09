@@ -1,5 +1,6 @@
 package com.liceolapaz.bcdnob.ahorca_do.model;
 
+import com.liceolapaz.bcdnob.ahorca_do.database.EncryptionConverter;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,15 +12,19 @@ public class User {
     private Integer id;
 
     @Column(name = "nombre", nullable = false)
+    @Convert(converter = EncryptionConverter.class)
     private String nombre;
 
     @Column(name = "apellido", nullable = false)
+    @Convert(converter = EncryptionConverter.class)
     private String apellido;
 
     @Column(name = "nickname", nullable = false)
+    @Convert(converter = EncryptionConverter.class)
     private String nickname;
 
     @Column(name = "password", nullable = false)
+    @Convert(converter = EncryptionConverter.class)
     private String password;
 
     @Column(name = "admin", nullable = false)
