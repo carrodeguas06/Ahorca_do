@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="login" alignment="CENTER" prefHeight="350.0" prefWidth="500.0" spacing="15.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.bcdnob.ahorca_do.controllers.LogInController">
+<VBox id="login" alignment="CENTER" prefHeight="350.0" prefWidth="500.0" spacing="15.0" styleClass="background" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.bcdnob.ahorca_do.controllers.LogInController">
     <children>
         <Label contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" text="Inicia Sesión" textAlignment="CENTER">
             <font>

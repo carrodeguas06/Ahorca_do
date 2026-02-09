@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="450.0" prefWidth="400.0" spacing="15.0" style="-fx-background-color: #ecf0f1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.bcdnob.ahorca_do.controllers.RegisterController">
+<VBox alignment="CENTER" prefHeight="450.0" prefWidth="400.0" spacing="15.0" styleClass="background" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.bcdnob.ahorca_do.controllers.RegisterController">
     <children>
-        <Label text="Crear Cuenta" textFill="#2c3e50">
+        <Label text="Crear Cuenta">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
@@ -21,7 +21,7 @@
 
         <VBox maxWidth="300.0" spacing="5.0">
             <children>
-                <Label text="Nombre:" textFill="#34495e">
+                <Label text="Nombre:">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -32,7 +32,7 @@
 
         <VBox maxWidth="300.0" spacing="5.0">
             <children>
-                <Label text="Apellido:" textFill="#34495e">
+                <Label text="Apellido:">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -43,7 +43,7 @@
 
         <VBox maxWidth="300.0" spacing="5.0">
             <children>
-                <Label text="Usuario (Nickname):" textFill="#34495e">
+                <Label text="Usuario (Nickname):">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -54,7 +54,7 @@
 
         <VBox maxWidth="300.0" spacing="5.0">
             <children>
-                <Label text="Contraseña:" textFill="#34495e">
+                <Label text="Contraseña:">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -65,12 +65,13 @@
 
         <VBox alignment="CENTER" spacing="10.0">
             <children>
-                <Button defaultButton="true" mnemonicParsing="false" onAction="#onRegistrar" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #2980b9; -fx-text-fill: white;" text="REGISTRARSE">
+                <Button defaultButton="true" mnemonicParsing="false" onAction="#onRegistrar" prefHeight="35.0" prefWidth="300.0" text="REGISTRARSE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button cancelButton="true" mnemonicParsing="false" onAction="#onVolver" prefWidth="300.0" style="-fx-background-color: transparent; -fx-text-fill: #7f8c8d; -fx-underline: true;" text="Volver al Login" />
+
+                <Button cancelButton="true" mnemonicParsing="false" onAction="#onVolver" prefWidth="300.0" text="Volver al Login" />
             </children>
             <VBox.margin>
                 <Insets top="10.0" />

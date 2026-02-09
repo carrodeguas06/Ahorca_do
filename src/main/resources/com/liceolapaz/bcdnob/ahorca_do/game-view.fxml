@@ -5,17 +5,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.bcdnob.ahorca_do.controllers.GameController">
+<BorderPane prefHeight="500.0" prefWidth="700.0" styleClass="background" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.bcdnob.ahorca_do.controllers.GameController">
 
     <top>
-        <HBox alignment="CENTER_RIGHT" spacing="15.0" style="-fx-background-color: #f0f0f0; -fx-padding: 10; -fx-border-color: #dcdcdc; -fx-border-width: 0 0 1 0;">
+        <HBox alignment="CENTER_RIGHT" spacing="15.0" style="-fx-padding: 10; -fx-border-color: #dcdcdc; -fx-border-width: 0 0 1 0;">
             <children>
                 <Label text="Jugador:">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label fx:id="lblNombreJugador" text="Usuario" textFill="#2c3e50">
+                <Label fx:id="lblNombreJugador" text="Usuario">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -34,7 +34,7 @@
     <center>
         <VBox alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
             <children>
-                <Label text="ADIVINA LA PALABRA" textFill="#95a5a6">
+                <Label text="ADIVINA LA PALABRA">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
@@ -46,7 +46,7 @@
                     </font>
                 </Label>
 
-                <Label fx:id="lblMensaje" text="Introduce una letra para empezar" textFill="#7f8c8d">
+                <Label fx:id="lblMensaje" text="Introduce una letra para empezar">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -59,9 +59,9 @@
     </center>
 
     <right>
-        <VBox prefWidth="180.0" spacing="10.0" style="-fx-background-color: #fff0f0; -fx-border-color: rgba(168,85,186,0.51); -fx-border-width: 2; -fx-padding: 15; -fx-background-radius: 5; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
+        <VBox prefWidth="180.0" spacing="10.0" style="-fx-border-color: rgba(168,85,186,0.51); -fx-border-width: 2; -fx-padding: 15; -fx-background-radius: 5; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="FALLOS" textFill="#c0392b" underline="true">
+                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="FALLOS" underline="true">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
@@ -77,7 +77,7 @@
     </right>
 
     <bottom>
-        <HBox alignment="CENTER" spacing="15.0" style="-fx-padding: 20; -fx-background-color: #bdc3c7;" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER" spacing="15.0" style="-fx-padding: 20;" BorderPane.alignment="CENTER">
             <children>
                 <Label text="Tu letra:">
                     <font>
@@ -89,7 +89,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </TextField>
-                <Button fx:id="btnEnviar" defaultButton="true" mnemonicParsing="false" onAction="#onEnviarLetra" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="ENVIAR">
+                <Button fx:id="btnEnviar" defaultButton="true" mnemonicParsing="false" onAction="#onEnviarLetra" prefHeight="40.0" prefWidth="100.0" text="ENVIAR">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -98,7 +98,7 @@
                 <Separator orientation="VERTICAL" />
 
                 <Button mnemonicParsing="false" onAction="#onVerPuntuacion" prefHeight="30.0" text="Puntuación" />
-                <Button mnemonicParsing="false" onAction="#onCancelar" prefHeight="30.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Abandonar" />
+                <Button mnemonicParsing="false" onAction="#onCancelar" prefHeight="30.0" text="Abandonar" />
             </children>
         </HBox>
     </bottom>

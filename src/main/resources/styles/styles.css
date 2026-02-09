@@ -1,19 +1,44 @@
-#menu
-{
+
+#menu {
     -fx-background-image: url("../images/menu.png");
-    -fx-background-size: 100% 150.01%;
+    -fx-background-size: 100% 150%;
 }
 
-#menu .button
-{
+
+.background {
+    -fx-background-image: url("../images/blackboard.jpg");
+    -fx-background-size: 100% 100%;
+}
+
+
+.button {
     -fx-background-color: transparent;
     -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
 }
 
-
-#menu .button:hover
-{
+.button:hover {
     -fx-background-color: white;
     -fx-text-fill: black;
     -fx-cursor: hand;
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+
+#menuButton {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-font-size: 30px;
+    -fx-text-fill: #ffffffa3;
+}
+
+#menuButton:hover {
+    -fx-background-color: #616161;
+    -fx-text-fill: #333333;
 }
