@@ -2,6 +2,7 @@ package com.liceolapaz.bcdnob.ahorca_do.controllers;
 
 import com.liceolapaz.bcdnob.ahorca_do.model.User;
 import com.liceolapaz.bcdnob.ahorca_do.navigation.AppShell;
+import com.liceolapaz.bcdnob.ahorca_do.navigation.AppView;
 import com.liceolapaz.bcdnob.ahorca_do.service.UserService;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -65,7 +66,7 @@ public class LogInController implements Initializable {
 
                 AppShell.getInstance().setCurrentUser(user);
 
-
+                AppShell.getInstance().loadView(AppView.MENU);
 
             } else {
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);

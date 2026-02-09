@@ -32,7 +32,6 @@ public class Application extends javafx.application.Application {
             Image icon = new Image(getClass().getResourceAsStream("/images/icon.png"));
             stage.getIcons().add(icon);
         } catch (Exception e) {
-
         }
 
         stage.setScene(scene);

@@ -8,12 +8,12 @@
     <children>
       <VBox alignment="CENTER" layoutX="395.0" layoutY="345.0" prefHeight="200.0" prefWidth="334.0" spacing="30.0">
          <children>
-              <Button fx:id="menuButton" alignment="CENTER" mnemonicParsing="false" onAction="#handlePlay" prefHeight="63.0" prefWidth="152.0" text="Jugar" textFill="#ffffffa3">
+              <Button fx:id="menuButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleJugar" prefHeight="63.0" prefWidth="152.0" text="Jugar" textFill="#ffffffa3">
                   <font>
                       <Font name="Comic Sans MS Bold Italic" size="30.0" />
                   </font>
               </Button>
-            <Button fx:id="menuButton1" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="63.0" prefWidth="235.0" text="Buscar amigo" textFill="#ffffffa3">
+            <Button fx:id="menuButton1" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleSearchFriend" prefHeight="63.0" prefWidth="235.0" text="Buscar amigo" textFill="#ffffffa3">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="30.0" />
                </font>

@@ -16,4 +16,11 @@ public class MenuController implements Initializable {
     public void handlePlay(ActionEvent actionEvent) {
         AppShell.getInstance().loadView(AppView.LOGIN);
     }
+
+    public void handleJugar(ActionEvent actionEvent) {
+
+    }
+
+    public void handleSearchFriend(ActionEvent actionEvent) {
+    }
 }
