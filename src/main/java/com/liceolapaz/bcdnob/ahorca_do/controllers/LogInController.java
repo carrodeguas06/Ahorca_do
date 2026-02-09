@@ -96,6 +96,7 @@ public class LogInController implements Initializable {
     }
 
     public void registerClic(ActionEvent actionEvent) {
+        AppShell.getInstance().loadView(AppView.REGISTER);
     }
 
     @Override

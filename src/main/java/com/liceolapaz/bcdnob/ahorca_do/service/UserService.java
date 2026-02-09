@@ -30,8 +30,8 @@ public class UserService {
         throw new Exception("This nickname is already taken");
         }
 
-        String hashedPassword= hashPassword(password);
-        User user= new User(nombre, apellido, nickname, password);
+        String hashedPassword = hashPassword(password);
+        User user= new User(nombre, apellido, nickname, hashedPassword);
         userDAO.save(user);
     }
 
