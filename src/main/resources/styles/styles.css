@@ -9,9 +9,7 @@
 
 }
 
-#menuButton:hover
-{
+#menuButton:hover {
     -fx-background-color: #616161;
-    -fx-font: #333333;
-
+    -fx-text-fill: #333333;
 }

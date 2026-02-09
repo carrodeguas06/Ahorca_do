@@ -25,13 +25,13 @@ public class UserService {
         return Optional.empty();
     }
 
-    public void registrarusuario(String nickname, String password, Boolean admin) throws Exception {
+    public void registrarusuario(String nickname, String password, String nombre, String apellido) throws Exception {
         if(userDAO.getUserByName(nickname).isPresent()){
         throw new Exception("This nickname is already taken");
         }
 
         String hashedPassword= hashPassword(password);
-        User user= new User(nickname, hashedPassword, admin);
+        User user= new User(nombre, apellido, nickname, password);
         userDAO.save(user);
     }
 
