@@ -23,8 +23,6 @@ public class LogInController implements Initializable {
     public Button boton;
     @FXML
     public Button register;
-    @FXML
-    public Label errorLabel;
 
     private UserService usuarioService = new UserService();
 
