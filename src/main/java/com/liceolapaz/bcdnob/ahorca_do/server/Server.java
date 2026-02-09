@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.Properties;
 
 public class Server {
-    static final int MAXIMO = 10;
+    static final int MAXIMO = 2;
 
     public static void main(String args[]) throws IOException {
         int PUERTO = 65000;
@@ -22,6 +22,8 @@ public class Server {
         // Factoría de sockets seguros
         SSLServerSocketFactory sssf = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
 
+
+                    //esto "try"
         try (SSLServerSocket servidor = (SSLServerSocket) sssf.createServerSocket(PUERTO)) {
             System.out.println("Servidor iniciado...");
 
@@ -36,7 +38,7 @@ public class Server {
                 comun.setACTUALES(comun.getACTUALES() + 1);
                 comun.setCONEXIONES(comun.getCONEXIONES() + 1);
 
-                HiloServidorChat hilo = new HiloServidorChat(socket, comun);
+                HiloServidor hilo = new HiloServidor(socket, comun);
                 hilo.start();
             }
         }
