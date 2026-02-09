@@ -38,6 +38,11 @@ public class RegisterController {
         else
         {
             userService.registrarusuario(txtNombre.getText(),txtApellido.getText(),txtNickname.getText(),txtPassword.getText());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Creando Usuario");
+            alert.setHeaderText("Se esta creando el usuario espere unos instantes");
+            alert.showAndWait();
+            AppShell.getInstance().loadView(AppView.LOGIN);
         }
     }
 }

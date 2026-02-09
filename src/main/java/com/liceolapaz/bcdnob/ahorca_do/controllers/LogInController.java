@@ -33,7 +33,7 @@ public class LogInController implements Initializable {
         String pass = password.getText();
 
         if (username.isEmpty() || pass.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setHeaderText(null);
             alert.setContentText("Por favor compruebe que todos los campos están cubiertos");
@@ -61,7 +61,7 @@ public class LogInController implements Initializable {
                 User user = usuarioOpt.get();
 
                 alert.setTitle("Conectado");
-                alert.setHeaderText(null);
+                alert.setHeaderText("Se ha conectado con éxito");
                 alert.show();
 
                 AppShell.getInstance().setCurrentUser(user);
@@ -69,7 +69,7 @@ public class LogInController implements Initializable {
                 AppShell.getInstance().loadView(AppView.MENU);
 
             } else {
-                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                Alert alert1 = new Alert(Alert.AlertType.WARNING);
                 alert1.setTitle("Error");
                 alert1.setHeaderText("La contraseña o el usuario son incorrectos");
                 alert1.show();
