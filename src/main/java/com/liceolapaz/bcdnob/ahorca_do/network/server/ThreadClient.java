@@ -67,7 +67,7 @@ public class ThreadClient implements Runnable {
                         out.flush();
                     } else if ("CANCELAR".equals(texto)) {
                         play.cancelPlay();
-                        synchronized (play) { play.notifyAll(); }
+                        synchronized (play) { play.notifyAll();}
                     }
                 }
             }

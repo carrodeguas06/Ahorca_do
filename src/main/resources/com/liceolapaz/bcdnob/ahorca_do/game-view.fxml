@@ -10,12 +10,22 @@
     <top>
         <HBox alignment="CENTER_RIGHT" spacing="15.0" style="-fx-padding: 10; -fx-border-color: #dcdcdc; -fx-border-width: 0 0 1 0;">
             <children>
-                <Label text="Jugador:">
+            <Label layoutX="408.0" layoutY="24.0" text="Jugador 1:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblNombreJugador1" layoutX="493.0" layoutY="24.0" text="Usuario">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+                <Label fx:id="j2l" text="Jugador 2:">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label fx:id="lblNombreJugador" text="Usuario">
+                <Label fx:id="lblNombreJugador2" text="Usuario">
                     <font>
                         <Font size="14.0" />
                     </font>
