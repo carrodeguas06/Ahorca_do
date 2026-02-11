@@ -32,7 +32,7 @@ public class ThreadClient implements Runnable {
                 sendState();
 
                 synchronized (play) {
-                    while (play.getActualTurn() != idPropio && play.isActiv()) {
+                    while (play.getTurn() != idPropio && play.isActiv()) {
                         play.wait();
                         sendState();
                     }
@@ -78,14 +78,14 @@ public class ThreadClient implements Runnable {
 
     private void sendState() throws IOException {
         if (socket.isClosed()) return;
-        PlayState ep = new PlayState(
+        PlayState ps = new PlayState(
                 play.getProgress(),
                 play.getVidas(idPropio),
                 play.getTurn() == idPropio,
                 !play.isActiv(),
                 !play.isActiv() ? "PARTIDA FINALIZADA" : ""
         );
-        out.writeObject(ep);
+        out.writeObject(ps);
         out.flush();
         out.reset();
     }

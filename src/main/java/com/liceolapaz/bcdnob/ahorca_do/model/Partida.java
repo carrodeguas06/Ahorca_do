@@ -23,6 +23,9 @@ public class Partida {
     @Column(name = "fecha", nullable = false)
     private Instant fecha;
 
+    @Column(name = "puntuacion", nullable = false)
+    private Integer puntuacion;
+
     public Integer getId() {
         return id;
     }
@@ -53,6 +56,14 @@ public class Partida {
 
     public void setFecha(Instant fecha) {
         this.fecha = fecha;
+    }
+
+    public Integer getPuntuacion() {
+        return puntuacion;
+    }
+
+    public void setPuntuacion(Integer puntuacion) {
+        this.puntuacion = puntuacion;
     }
 
 }

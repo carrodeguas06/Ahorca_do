@@ -1,5 +1,7 @@
 package com.liceolapaz.bcdnob.ahorca_do.network.server;
 
+import com.liceolapaz.bcdnob.ahorca_do.model.Word;
+
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocket;
@@ -14,7 +16,7 @@ public class ServerSSL {
     private Properties prop = new Properties();
     public void iniciar() {
         try {
-            WordDao.importarDesdeJson();
+            Word.getSecretWord();
             SSLContext sc = crearContextoSSL();
             SSLServerSocket serverSocket = (SSLServerSocket) sc.getServerSocketFactory().createServerSocket(Integer.parseInt(prop.getProperty("server.port")));
             System.out.println("[SERVIDOR] Listo.");
@@ -27,7 +29,7 @@ public class ServerSSL {
                 try { clientes.add((SSLSocket) serverSocket.accept()); } catch (Exception e) {}
                 serverSocket.setSoTimeout(0);
 
-                PlayLogic logica = new PlayLogic(WordDao.getPalabraSecreta(), clientes.size());
+                PlayLogic logica = new PlayLogic(Word.getSecretWord(), clientes.size());
                 for (int i = 0; i < clientes.size(); i++) {
                     new Thread(new ThreadClient(clientes.get(i), i, logica)).start();
                 }

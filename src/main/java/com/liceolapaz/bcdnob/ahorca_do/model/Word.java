@@ -6,13 +6,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Word {
-    private String word;
-    private int lenght;
-    public Word(String word)
-    {
-        this.word = word;
-        this.lenght = word.length();
-    }
 
     public static String getSecretWord()
     {
