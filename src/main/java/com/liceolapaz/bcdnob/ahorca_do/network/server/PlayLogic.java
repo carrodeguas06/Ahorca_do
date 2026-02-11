@@ -13,10 +13,10 @@ public class PlayLogic {
 
     public PlayLogic(String palabra, int numJugadores) {
         this.nPlayers = numJugadores;
-        iniciarNuevaRonda(palabra);
+        newRound(palabra);
     }
 
-    public synchronized void iniciarNuevaRonda(String nuevaPalabra) {
+    public synchronized void newRound(String nuevaPalabra) {
         this.secretWord = nuevaPalabra.toUpperCase();
         this.progress = "_".repeat(secretWord.length());
         for (int i = 0; i < nPlayers; i++) {

@@ -5,6 +5,7 @@ module com.liceolapaz.bcdnob.ahorca_do {
     requires jakarta.persistence;
     requires java.desktop;
     requires java.naming;
+    requires org.json;
 
 
     opens com.liceolapaz.bcdnob.ahorca_do to javafx.fxml;

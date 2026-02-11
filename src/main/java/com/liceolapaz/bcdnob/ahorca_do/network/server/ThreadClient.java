@@ -1,6 +1,7 @@
 package com.liceolapaz.bcdnob.ahorca_do.network.server;
 
 import com.liceolapaz.bcdnob.ahorca_do.model.User;
+import com.liceolapaz.bcdnob.ahorca_do.model.Word;
 
 import javax.net.ssl.SSLSocket;
 import java.io.IOException;
