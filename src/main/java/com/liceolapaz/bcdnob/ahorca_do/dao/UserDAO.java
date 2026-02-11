@@ -10,9 +10,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class UserDAO implements UsersDAOInter {
+public class UserDAO{
 
-    @Override
     public Optional<User> getUserByName(String nickname) {
         try (Session session = DatabaseConnection.getSessionFactory().openSession()) {
             Query query = session.createQuery("FROM User u WHERE u.nickname = :nickname", User.class);
@@ -23,7 +22,6 @@ public class UserDAO implements UsersDAOInter {
         }
     }
 
-    @Override
     public List<User> getAllUsers() {
         Session session = DatabaseConnection.getSessionFactory().openSession();
         Query query = session.createQuery("FROM User", User.class);

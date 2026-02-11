@@ -1,5 +1,6 @@
 package com.liceolapaz.bcdnob.ahorca_do.network.server;
 
+import com.liceolapaz.bcdnob.ahorca_do.model.PlayState;
 import com.liceolapaz.bcdnob.ahorca_do.model.User;
 import com.liceolapaz.bcdnob.ahorca_do.model.Word;
 

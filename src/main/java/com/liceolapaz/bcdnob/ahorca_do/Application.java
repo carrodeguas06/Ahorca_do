@@ -2,7 +2,6 @@ package com.liceolapaz.bcdnob.ahorca_do;
 
 import com.liceolapaz.bcdnob.ahorca_do.navigation.AppShell;
 import com.liceolapaz.bcdnob.ahorca_do.navigation.AppView;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
