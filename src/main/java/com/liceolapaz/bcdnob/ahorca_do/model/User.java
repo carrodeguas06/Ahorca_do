@@ -1,22 +1,17 @@
 package com.liceolapaz.bcdnob.ahorca_do.model;
 
-import com.liceolapaz.bcdnob.ahorca_do.database.EncryptionConverter;
 import jakarta.persistence.*;
-import java.io.Serializable; // <--- IMPORTANTE: Añadir este import
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user", nullable = false)
     private Integer id;
 
-    @Column(name = "nombre", nullable = false)
-    private String nombre;
+    @Column(name = "admin", nullable = false)
+    private Boolean admin = false;
 
     @Column(name = "apellido", nullable = false)
     private String apellido;
@@ -24,15 +19,14 @@ public class User implements Serializable {
     @Column(name = "nickname", nullable = false)
     private String nickname;
 
+    @Column(name = "nombre", nullable = false)
+    private String nombre;
+
     @Column(name = "password", nullable = false)
-    @Convert(converter = EncryptionConverter.class)
     private String password;
 
-    @Column(name = "admin", nullable = false)
-    private Boolean admin = false;
-
-    public User() {
-    }
+    @Column(name = "puntuacion", nullable = false)
+    private Integer puntuacion;
 
     public Integer getId() {
         return id;
@@ -42,12 +36,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Boolean getAdmin() {
+        return admin;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 
     public String getApellido() {
@@ -66,6 +60,14 @@ public class User implements Serializable {
         this.nickname = nickname;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -74,19 +76,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Boolean getAdmin() {
-        return admin;
+    public Integer getPuntuacion() {
+        return puntuacion;
     }
 
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
+    public void setPuntuacion(Integer puntuacion) {
+        this.puntuacion = puntuacion;
     }
 
-    public User(String nombre, String apellido, String nickname, String password) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.nickname = nickname;
-        this.password = password;
-        this.admin = false;
-    }
 }
