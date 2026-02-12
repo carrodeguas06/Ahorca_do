@@ -15,20 +15,22 @@ public class ThreadClient implements Runnable {
     private int idPropio;
     private PlayLogic play;
     private ObjectOutputStream out;
+    private ObjectInputStream in;
     private User user;
 
-    public ThreadClient(SSLSocket s, int id, PlayLogic p) {
-        this.socket = s; this.idPropio = id; this.play = p;
+    public ThreadClient(SSLSocket s, int id, PlayLogic p, ObjectOutputStream out, ObjectInputStream in, User user) {
+        this.socket = s;
+        this.idPropio = id;
+        this.play = p;
+        this.out = out;
+        this.in = in;
+        this.user = user;
     }
 
     @Override
     public void run() {
         try {
-            out = new ObjectOutputStream(socket.getOutputStream());
-            out.flush();
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 
-            this.user = (User) in.readObject();
 
             while (play.isActiv()) {
                 sendState();
@@ -41,6 +43,7 @@ public class ThreadClient implements Runnable {
                 }
 
                 if (!play.isActiv()) break;
+
 
                 Object msg = in.readObject();
 
@@ -67,7 +70,7 @@ public class ThreadClient implements Runnable {
                         out.flush();
                     } else if ("CANCELAR".equals(texto)) {
                         play.cancelPlay();
-                        synchronized (play) { play.notifyAll();}
+                        synchronized (play) { play.notifyAll(); }
                     }
                 }
             }

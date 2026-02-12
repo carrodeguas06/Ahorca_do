@@ -18,6 +18,7 @@ public class AppShell {
     private Map<AppView, Object> controllers = new HashMap<>();
 
     private User currentUser;
+    private int gameMode = 1;
 
     private AppShell() {}
 
@@ -81,5 +82,13 @@ public class AppShell {
 
     public void setPrimaryStage(Stage stage) {
         this.primaryStage = stage;
+    }
+
+    public int getGameMode() {
+        return gameMode;
+    }
+
+    public void setGameMode(int gameMode) {
+        this.gameMode = gameMode;
     }
 }

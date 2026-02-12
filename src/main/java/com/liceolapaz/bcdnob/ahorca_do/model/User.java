@@ -2,10 +2,14 @@ package com.liceolapaz.bcdnob.ahorca_do.model;
 
 import com.liceolapaz.bcdnob.ahorca_do.database.EncryptionConverter;
 import jakarta.persistence.*;
+import java.io.Serializable; // <--- IMPORTANTE: Añadir este import
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user", nullable = false)
@@ -28,7 +32,6 @@ public class User {
     private Boolean admin = false;
 
     public User() {
-
     }
 
     public Integer getId() {
@@ -79,14 +82,11 @@ public class User {
         this.admin = admin;
     }
 
-
     public User(String nombre, String apellido, String nickname, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nickname = nickname;
         this.password = password;
-        this.admin= false;
+        this.admin = false;
     }
-
-
 }

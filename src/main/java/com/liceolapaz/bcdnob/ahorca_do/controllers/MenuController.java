@@ -3,12 +3,16 @@ package com.liceolapaz.bcdnob.ahorca_do.controllers;
 import com.liceolapaz.bcdnob.ahorca_do.navigation.AppShell;
 import com.liceolapaz.bcdnob.ahorca_do.navigation.AppView;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
@@ -16,11 +20,13 @@ public class MenuController implements Initializable {
     public void handlePlay(ActionEvent actionEvent) {
         AppShell.getInstance().loadView(AppView.LOGIN);
     }
-
     public void handleJugar(ActionEvent actionEvent) {
-
+        AppShell.getInstance().setGameMode(1);
+        AppShell.getInstance().loadView(AppView.GAME);
     }
 
     public void handleSearchFriend(ActionEvent actionEvent) {
+        AppShell.getInstance().setGameMode(2);
+        AppShell.getInstance().loadView(AppView.GAME);
     }
 }

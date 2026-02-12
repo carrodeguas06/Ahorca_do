@@ -54,6 +54,13 @@ public class GameController implements Initializable {
             client = new ClientTCP();
             client.conectar();
 
+            int mode = AppShell.getInstance().getGameMode();
+            client.enviarDatos(mode);
+
+            client.enviarDatos(user);
+            client = new ClientTCP();
+            client.conectar();
+
             client.enviarDatos(user);
 
             while (escuchando) {
@@ -131,7 +138,6 @@ public class GameController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
-        // Volver al menú
         onCancelar(null);
     }
 
