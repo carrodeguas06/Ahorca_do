@@ -15,7 +15,6 @@ public class UserService {
 
     public Optional<User> login(String nickname, String password){
         Optional<User> userOpt = userDAO.getUserByName(nickname);
-
         if (userOpt.isPresent()) {
             User user = userOpt.get();
             if (password.equals(user.getPassword())) {
