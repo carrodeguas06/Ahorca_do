@@ -2,7 +2,7 @@ package com.liceolapaz.bcdnob.ahorca_do.model;
 
 import com.liceolapaz.bcdnob.ahorca_do.database.EncryptionConverter;
 import jakarta.persistence.*;
-import java.io.Serializable; // <--- IMPORTANTE: Añadir este import
+import java.io.Serializable;
 
 @Entity
 @Table(name = "users")

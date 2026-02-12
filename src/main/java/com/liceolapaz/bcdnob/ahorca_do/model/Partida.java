@@ -26,6 +26,10 @@ public class Partida {
     @Column(name = "puntuacion", nullable = false)
     private Integer puntuacion;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ganador", nullable = false)
+    private User ganador;
+
     public Integer getId() {
         return id;
     }
@@ -64,6 +68,14 @@ public class Partida {
 
     public void setPuntuacion(Integer puntuacion) {
         this.puntuacion = puntuacion;
+    }
+
+    public User getGanador() {
+        return ganador;
+    }
+
+    public void setGanador(User ganador) {
+        this.ganador = ganador;
     }
 
 }

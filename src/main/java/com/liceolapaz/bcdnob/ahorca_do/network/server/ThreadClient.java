@@ -1,13 +1,16 @@
 package com.liceolapaz.bcdnob.ahorca_do.network.server;
 
 import com.liceolapaz.bcdnob.ahorca_do.dao.PartidaDAO;
+import com.liceolapaz.bcdnob.ahorca_do.model.Partida;
 import com.liceolapaz.bcdnob.ahorca_do.model.PlayState;
 import com.liceolapaz.bcdnob.ahorca_do.model.User;
+import com.liceolapaz.bcdnob.ahorca_do.model.Word;
 
 import javax.net.ssl.SSLSocket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.Instant;
 
 public class ThreadClient implements Runnable {
     private SSLSocket socket;
@@ -46,9 +49,22 @@ public class ThreadClient implements Runnable {
 
                 if (msg instanceof Character) {
                     play.processPlay(idPropio, (Character) msg);
-                    // Comprobar victoria
+
                     if (!play.getProgress().contains("_")) {
-                        endMessage = "¡HAS GANADO!";
+
+                        String palabraGanadora = play.getSecretWord();
+                        int puntosGanados = (palabraGanadora.length() < 10) ? 1 : 2;
+
+                        Partida partida = new Partida();
+                        partida.setIdJug1(user);
+                        partida.setFecha(Instant.now());
+                        partida.setPuntuacion(puntosGanados);
+
+                        partida.setGanador(user);
+
+                        new PartidaDAO().guardarPartida(partida);
+
+                        endMessage = "¡HAS GANADO! (+" + puntosGanados + " pts)";
                         play.cancelPlay();
                         synchronized (play) { play.notifyAll(); }
                     }
@@ -65,11 +81,11 @@ public class ThreadClient implements Runnable {
                     }
                 }
             }
-            // Enviar estado final de victoria o derrota
             sendState(true, endMessage);
 
         } catch (Exception e) {
             System.err.println("Error en HiloCliente " + idPropio + ": " + e.getMessage());
+            e.printStackTrace();
         } finally {
             unconect();
         }
