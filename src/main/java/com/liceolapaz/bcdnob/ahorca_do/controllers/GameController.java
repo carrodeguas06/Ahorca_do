@@ -13,30 +13,25 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
-    @FXML
-    public Label lblNombreJugador1;
-    @FXML
-    public Label lblNombreJugador2;
-    @FXML
-    public Label j2l;
-    @FXML
-    public Label lblIntentos;
-    @FXML
-    public Label lblPalabraOculta;
-    @FXML
-    public Label lblMensaje;
-    @FXML
-    public TextFlow flowFallos;
-    @FXML
-    public TextField txtLetra;
-    @FXML
-    public Button btnEnviar;
+    @FXML public Label lblNombreJugador1;
+    @FXML public Label lblNombreJugador2;
+    @FXML public Label j2l;
+    @FXML public Label lblIntentos;
+    @FXML public Label lblPalabraOculta;
+    @FXML public Label lblMensaje;
+    @FXML public TextFlow flowFallos;
+    @FXML public TextField txtLetra;
+    @FXML public Button btnEnviar;
 
     private ClientTCP client;
     private boolean escuchando = true;
@@ -45,10 +40,17 @@ public class GameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         User currentUser = AppShell.getInstance().getCurrentUser();
         lblNombreJugador1.setText(currentUser.getNickname());
-        lblNombreJugador2.setText("Esperando...");
+
+        if (AppShell.getInstance().getGameMode() == 1) {
+            j2l.setVisible(false);
+            lblNombreJugador2.setVisible(false);
+        } else {
+            lblNombreJugador2.setText("Esperando...");
+        }
 
         new Thread(() -> startConnection(currentUser)).start();
     }
+
     private void startConnection(User user) {
         try {
             client = new ClientTCP();
@@ -56,12 +58,8 @@ public class GameController implements Initializable {
 
             int mode = AppShell.getInstance().getGameMode();
             client.enviarDatos(mode);
-
             client.enviarDatos(user);
-            client = new ClientTCP();
-            client.conectar();
 
-            client.enviarDatos(user);
 
             while (escuchando) {
                 Object recibido = client.recibirDatos();
@@ -69,6 +67,7 @@ public class GameController implements Initializable {
                 if (recibido instanceof PlayState) {
                     PlayState estado = (PlayState) recibido;
 
+                    // Actualizar UI
                     Platform.runLater(() -> actualizarInterfaz(estado));
 
                     if (estado.isFinished()) {
@@ -95,8 +94,18 @@ public class GameController implements Initializable {
     private void actualizarInterfaz(PlayState estado) {
         String palabraFormateada = estado.getProgress().replace("", " ").trim();
         lblPalabraOculta.setText(palabraFormateada);
+
         lblIntentos.setText(String.valueOf(estado.getLives()));
 
+        flowFallos.getChildren().clear();
+        if (estado.getFailedLetters() != null && !estado.getFailedLetters().isEmpty()) {
+            Text falloText = new Text(estado.getFailedLetters());
+            falloText.setFill(Color.RED);
+            falloText.setFont(Font.font("System", FontWeight.BOLD, 24));
+            flowFallos.getChildren().add(falloText);
+        }
+
+        // 4. TURNO
         if (estado.isYourTurn()) {
             lblMensaje.setText("¡Es tu turno! Escribe una letra.");
             txtLetra.setDisable(false);
@@ -114,9 +123,13 @@ public class GameController implements Initializable {
 
         if (texto != null && !texto.isEmpty()) {
             char letra = texto.charAt(0);
-            client.enviarDatos(letra);
-
-            txtLetra.clear();
+            if (Character.isLetter(letra)) {
+                client.enviarDatos(letra);
+                txtLetra.clear();
+            } else {
+                mostrarAlerta("Carácter inválido", "Por favor introduce solo letras.");
+                txtLetra.clear();
+            }
         }
     }
 
@@ -132,6 +145,7 @@ public class GameController implements Initializable {
         }
         AppShell.getInstance().loadView(AppView.MENU);
     }
+
     private void mostrarFinPartida(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Fin de la partida");

@@ -11,6 +11,8 @@ public class PlayLogic {
     private boolean activ = true;
     private Map<Integer, Integer> playerLives = new HashMap<>();
 
+    private StringBuilder failedLettersStr = new StringBuilder();
+
     public PlayLogic(String palabra, int numJugadores) {
         this.nPlayers = numJugadores;
         newRound(palabra);
@@ -19,6 +21,7 @@ public class PlayLogic {
     public synchronized void newRound(String nuevaPalabra) {
         this.secretWord = nuevaPalabra.toUpperCase();
         this.progress = "_".repeat(secretWord.length());
+        this.failedLettersStr.setLength(0);
         for (int i = 0; i < nPlayers; i++) {
             playerLives.put(i, 6);
         }
@@ -49,6 +52,11 @@ public class PlayLogic {
             int v = playerLives.get(id) - 1;
             playerLives.put(id, v);
 
+            if (failedLettersStr.indexOf(String.valueOf(letra)) == -1) {
+                if (!failedLettersStr.isEmpty()) failedLettersStr.append(" ");
+                failedLettersStr.append(letra);
+            }
+
             if (v <= 0) {
                 activ = false;
             } else if (nPlayers == 2) {
@@ -61,4 +69,5 @@ public class PlayLogic {
     public int getVidas(int id) { return playerLives.getOrDefault(id, 0); }
     public int getTurn() { return turn; }
     public boolean isActiv() { return activ; }
+    public String getFailedLetters() { return failedLettersStr.toString(); }
 }

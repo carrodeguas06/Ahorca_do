@@ -83,13 +83,16 @@ public class ThreadClient implements Runnable {
 
     private void sendState() throws IOException {
         if (socket.isClosed()) return;
+
         PlayState ps = new PlayState(
                 play.getProgress(),
                 play.getVidas(idPropio),
                 play.getTurn() == idPropio,
                 !play.isActiv(),
-                !play.isActiv() ? "PARTIDA FINALIZADA" : ""
+                !play.isActiv() ? "PARTIDA FINALIZADA" : "",
+                play.getFailedLetters()
         );
+
         out.writeObject(ps);
         out.flush();
         out.reset();
