@@ -13,12 +13,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.scene.paint.Color;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -40,14 +37,12 @@ public class GameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         User currentUser = AppShell.getInstance().getCurrentUser();
         lblNombreJugador1.setText(currentUser.getNickname());
-
         if (AppShell.getInstance().getGameMode() == 1) {
             j2l.setVisible(false);
             lblNombreJugador2.setVisible(false);
         } else {
             lblNombreJugador2.setText("Esperando...");
         }
-
         new Thread(() -> startConnection(currentUser)).start();
     }
 
@@ -55,81 +50,60 @@ public class GameController implements Initializable {
         try {
             client = new ClientTCP();
             client.conectar();
-
-            int mode = AppShell.getInstance().getGameMode();
-            client.enviarDatos(mode);
+            client.enviarDatos(AppShell.getInstance().getGameMode());
             client.enviarDatos(user);
-
 
             while (escuchando) {
                 Object recibido = client.recibirDatos();
+                if (recibido == null) break;
 
                 if (recibido instanceof PlayState) {
                     PlayState estado = (PlayState) recibido;
-
-                    // Actualizar UI
                     Platform.runLater(() -> actualizarInterfaz(estado));
-
                     if (estado.isFinished()) {
                         escuchando = false;
                         Platform.runLater(() -> mostrarFinPartida(estado.getMesaje()));
                     }
-                }
-                else if (recibido instanceof String) {
+                } else if (recibido instanceof String) {
                     String msg = (String) recibido;
-                    if(msg.startsWith("PUNTUACION:")) {
-                        Platform.runLater(() -> mostrarAlerta("Puntuación", msg));
+                    if(msg.startsWith("PUNTUACION_DATA:")) {
+                        String contenido = msg.substring("PUNTUACION_DATA:".length());
+                        Platform.runLater(() -> mostrarAlerta("Puntos", contenido));
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Platform.runLater(() -> {
-                lblMensaje.setText("Error de conexión con el servidor.");
-                btnEnviar.setDisable(true);
-            });
         }
     }
 
     private void actualizarInterfaz(PlayState estado) {
-        String palabraFormateada = estado.getProgress().replace("", " ").trim();
-        lblPalabraOculta.setText(palabraFormateada);
-
+        lblPalabraOculta.setText(estado.getProgress().replace("", " ").trim());
         lblIntentos.setText(String.valueOf(estado.getLives()));
-
         flowFallos.getChildren().clear();
         if (estado.getFailedLetters() != null && !estado.getFailedLetters().isEmpty()) {
-            Text falloText = new Text(estado.getFailedLetters());
-            falloText.setFill(Color.RED);
-            falloText.setFont(Font.font("System", FontWeight.BOLD, 24));
-            flowFallos.getChildren().add(falloText);
+            Text f = new Text(estado.getFailedLetters());
+            f.setFill(Color.RED);
+            flowFallos.getChildren().add(f);
         }
-
-        // 4. TURNO
-        if (estado.isYourTurn()) {
-            lblMensaje.setText("¡Es tu turno! Escribe una letra.");
-            txtLetra.setDisable(false);
-            btnEnviar.setDisable(false);
-            txtLetra.requestFocus();
-        } else {
-            lblMensaje.setText("Esperando turno del oponente...");
-            txtLetra.setDisable(true);
-            btnEnviar.setDisable(true);
+        if (!estado.isFinished()) {
+            if (estado.isYourTurn()) {
+                lblMensaje.setText("¡Es tu turno!");
+                txtLetra.setDisable(false);
+                btnEnviar.setDisable(false);
+            } else {
+                lblMensaje.setText("Esperando...");
+                txtLetra.setDisable(true);
+                btnEnviar.setDisable(true);
+            }
         }
     }
 
     public void onEnviarLetra(ActionEvent actionEvent) {
-        String texto = txtLetra.getText();
-
-        if (texto != null && !texto.isEmpty()) {
-            char letra = texto.charAt(0);
-            if (Character.isLetter(letra)) {
-                client.enviarDatos(letra);
-                txtLetra.clear();
-            } else {
-                mostrarAlerta("Carácter inválido", "Por favor introduce solo letras.");
-                txtLetra.clear();
-            }
+        String t = txtLetra.getText();
+        if (t != null && !t.isEmpty()) {
+            client.enviarDatos(t.charAt(0));
+            txtLetra.clear();
         }
     }
 
@@ -147,19 +121,17 @@ public class GameController implements Initializable {
     }
 
     private void mostrarFinPartida(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Fin de la partida");
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-        onCancelar(null);
+        lblMensaje.setText(mensaje);
+        txtLetra.setDisable(true);
+        btnEnviar.setDisable(true);
+        mostrarAlerta("Juego Terminado", mensaje);
     }
 
     private void mostrarAlerta(String titulo, String contenido) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(contenido);
-        alert.showAndWait();
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setTitle(titulo);
+        a.setHeaderText(null);
+        a.setContentText(contenido);
+        a.showAndWait();
     }
 }

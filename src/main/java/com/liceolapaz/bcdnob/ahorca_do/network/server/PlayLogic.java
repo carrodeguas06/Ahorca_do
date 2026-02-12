@@ -10,11 +10,16 @@ public class PlayLogic {
     private int nPlayers;
     private boolean activ = true;
     private Map<Integer, Integer> playerLives = new HashMap<>();
-
     private StringBuilder failedLettersStr = new StringBuilder();
 
     public PlayLogic(String palabra, int numJugadores) {
         this.nPlayers = numJugadores;
+        // Chivato en consola
+        System.out.println("=========================================");
+        System.out.println("[SERVIDOR] NUEVA PARTIDA GENERADA");
+        System.out.println("[SERVIDOR] PALABRA SECRETA: " + palabra.toUpperCase());
+        System.out.println("=========================================");
+
         newRound(palabra);
     }
 
@@ -22,8 +27,12 @@ public class PlayLogic {
         this.secretWord = nuevaPalabra.toUpperCase();
         this.progress = "_".repeat(secretWord.length());
         this.failedLettersStr.setLength(0);
+
+        // CALCULO DE VIDAS: Mitad de la longitud, mínimo 1
+        int vidasIniciales = Math.max(1, secretWord.length() / 2);
+
         for (int i = 0; i < nPlayers; i++) {
-            playerLives.put(i, 6);
+            playerLives.put(i, vidasIniciales);
         }
         this.activ = true;
     }
@@ -69,5 +78,6 @@ public class PlayLogic {
     public int getVidas(int id) { return playerLives.getOrDefault(id, 0); }
     public int getTurn() { return turn; }
     public boolean isActiv() { return activ; }
+    public String getSecretWord() { return secretWord; }
     public String getFailedLetters() { return failedLettersStr.toString(); }
 }

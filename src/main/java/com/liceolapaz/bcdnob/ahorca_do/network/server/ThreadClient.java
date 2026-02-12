@@ -3,7 +3,6 @@ package com.liceolapaz.bcdnob.ahorca_do.network.server;
 import com.liceolapaz.bcdnob.ahorca_do.dao.PartidaDAO;
 import com.liceolapaz.bcdnob.ahorca_do.model.PlayState;
 import com.liceolapaz.bcdnob.ahorca_do.model.User;
-import com.liceolapaz.bcdnob.ahorca_do.model.Word;
 
 import javax.net.ssl.SSLSocket;
 import java.io.IOException;
@@ -17,6 +16,7 @@ public class ThreadClient implements Runnable {
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private User user;
+    private String endMessage = "PARTIDA FINALIZADA (Sin vidas)";
 
     public ThreadClient(SSLSocket s, int id, PlayLogic p, ObjectOutputStream out, ObjectInputStream in, User user) {
         this.socket = s;
@@ -30,43 +30,34 @@ public class ThreadClient implements Runnable {
     @Override
     public void run() {
         try {
-
-
             while (play.isActiv()) {
-                sendState();
+                sendState(false, "");
 
                 synchronized (play) {
                     while (play.getTurn() != idPropio && play.isActiv()) {
                         play.wait();
-                        sendState();
+                        sendState(false, "");
                     }
                 }
 
                 if (!play.isActiv()) break;
 
-
                 Object msg = in.readObject();
 
                 if (msg instanceof Character) {
                     play.processPlay(idPropio, (Character) msg);
-
+                    // Comprobar victoria
                     if (!play.getProgress().contains("_")) {
-                        String nueva = Word.getSecretWord();
-                        synchronized (play) {
-                            play.newRound(nueva);
-                            play.notifyAll();
-                        }
-                    } else {
-                        synchronized (play) {
-                            play.notifyAll();
-                        }
+                        endMessage = "¡HAS GANADO!";
+                        play.cancelPlay();
+                        synchronized (play) { play.notifyAll(); }
                     }
                 }
                 else if (msg instanceof String) {
                     String texto = (String) msg;
                     if ("PUNTUACION".equals(texto)) {
                         long puntos = new PartidaDAO().obtenerPuntuacionTotal(user.getId());
-                        out.writeObject("PUNTUACION:" + puntos);
+                        out.writeObject("PUNTUACION_DATA:" + user.getNickname() + ": " + puntos + " pts");
                         out.flush();
                     } else if ("CANCELAR".equals(texto)) {
                         play.cancelPlay();
@@ -74,6 +65,9 @@ public class ThreadClient implements Runnable {
                     }
                 }
             }
+            // Enviar estado final de victoria o derrota
+            sendState(true, endMessage);
+
         } catch (Exception e) {
             System.err.println("Error en HiloCliente " + idPropio + ": " + e.getMessage());
         } finally {
@@ -81,18 +75,16 @@ public class ThreadClient implements Runnable {
         }
     }
 
-    private void sendState() throws IOException {
+    private void sendState(boolean finished, String msg) throws IOException {
         if (socket.isClosed()) return;
-
         PlayState ps = new PlayState(
                 play.getProgress(),
                 play.getVidas(idPropio),
                 play.getTurn() == idPropio,
-                !play.isActiv(),
-                !play.isActiv() ? "PARTIDA FINALIZADA" : "",
+                finished,
+                msg,
                 play.getFailedLetters()
         );
-
         out.writeObject(ps);
         out.flush();
         out.reset();
