@@ -65,7 +65,6 @@ public class ServerSSL {
                 }
             } catch (Exception ex) {
                 System.err.println("Un cliente ha fallado al conectar: " + ex.getMessage());
-                // Al capturarlo aquí dentro, el servidor sigue vivo para el siguiente jugador.
             }
         }
     } catch (Exception e) { e.printStackTrace(); }
