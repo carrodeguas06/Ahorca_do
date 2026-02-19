@@ -32,17 +32,26 @@ public class GameController implements Initializable {
 
     private ClientTCP client;
     private boolean escuchando = true;
+    private boolean partidaIniciada = false; // NUEVO: Controla si ya estamos en partida
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         User currentUser = AppShell.getInstance().getCurrentUser();
         lblNombreJugador1.setText(currentUser.getNickname());
+
+        // BLOQUEO INICIAL: No se puede escribir hasta que el servidor avise
+        txtLetra.setDisable(true);
+        btnEnviar.setDisable(true);
+
         if (AppShell.getInstance().getGameMode() == 1) {
             j2l.setVisible(false);
             lblNombreJugador2.setVisible(false);
+            lblMensaje.setText("Iniciando partida en solitario...");
         } else {
             lblNombreJugador2.setText("Esperando...");
+            lblMensaje.setText("Esperando a que se conecte el oponente...");
         }
+
         new Thread(() -> startConnection(currentUser)).start();
     }
 
@@ -59,7 +68,16 @@ public class GameController implements Initializable {
 
                 if (recibido instanceof PlayState) {
                     PlayState estado = (PlayState) recibido;
-                    Platform.runLater(() -> actualizarInterfaz(estado));
+
+                    Platform.runLater(() -> {
+                        // Si es el primer mensaje en multijugador, ¡ya estamos conectados!
+                        if (!partidaIniciada && AppShell.getInstance().getGameMode() == 2) {
+                            lblNombreJugador2.setText("¡Conectado!");
+                            partidaIniciada = true;
+                        }
+                        actualizarInterfaz(estado);
+                    });
+
                     if (estado.isFinished()) {
                         escuchando = false;
                         Platform.runLater(() -> mostrarFinPartida(estado.getMesaje()));
@@ -81,18 +99,21 @@ public class GameController implements Initializable {
         lblPalabraOculta.setText(estado.getProgress().replace("", " ").trim());
         lblIntentos.setText(String.valueOf(estado.getLives()));
         flowFallos.getChildren().clear();
+
         if (estado.getFailedLetters() != null && !estado.getFailedLetters().isEmpty()) {
             Text f = new Text(estado.getFailedLetters());
             f.setFill(Color.RED);
             flowFallos.getChildren().add(f);
         }
+
         if (!estado.isFinished()) {
             if (estado.isYourTurn()) {
-                lblMensaje.setText("¡Es tu turno!");
+                lblMensaje.setText("¡Es tu turno! Escribe una letra.");
                 txtLetra.setDisable(false);
                 btnEnviar.setDisable(false);
+                txtLetra.requestFocus();
             } else {
-                lblMensaje.setText("Esperando...");
+                lblMensaje.setText("Turno del oponente...");
                 txtLetra.setDisable(true);
                 btnEnviar.setDisable(true);
             }

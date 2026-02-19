@@ -4,7 +4,6 @@ import com.liceolapaz.bcdnob.ahorca_do.dao.PartidaDAO;
 import com.liceolapaz.bcdnob.ahorca_do.model.Partida;
 import com.liceolapaz.bcdnob.ahorca_do.model.PlayState;
 import com.liceolapaz.bcdnob.ahorca_do.model.User;
-import com.liceolapaz.bcdnob.ahorca_do.model.Word;
 
 import javax.net.ssl.SSLSocket;
 import java.io.IOException;
@@ -51,7 +50,6 @@ public class ThreadClient implements Runnable {
                     play.processPlay(idPropio, (Character) msg);
 
                     if (!play.getProgress().contains("_")) {
-
                         String palabraGanadora = play.getSecretWord();
                         int puntosGanados = (palabraGanadora.length() < 10) ? 1 : 2;
 
@@ -59,13 +57,14 @@ public class ThreadClient implements Runnable {
                         partida.setIdJug1(user);
                         partida.setFecha(Instant.now());
                         partida.setPuntuacion(puntosGanados);
-
                         partida.setGanador(user);
-
                         new PartidaDAO().guardarPartida(partida);
 
                         endMessage = "¡HAS GANADO! (+" + puntosGanados + " pts)";
                         play.cancelPlay();
+                        synchronized (play) { play.notifyAll(); }
+                    } else {
+                        // --- ¡LA LÍNEA QUE FALTABA! Avisa al otro jugador del turno ---
                         synchronized (play) { play.notifyAll(); }
                     }
                 }
@@ -85,7 +84,6 @@ public class ThreadClient implements Runnable {
 
         } catch (Exception e) {
             System.err.println("Error en HiloCliente " + idPropio + ": " + e.getMessage());
-            e.printStackTrace();
         } finally {
             unconect();
         }

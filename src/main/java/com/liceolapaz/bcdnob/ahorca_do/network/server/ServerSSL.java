@@ -30,17 +30,17 @@ public class ServerSSL {
         }
     }
 
-    public void iniciar() {
-        try {
-            prop.load(getClass().getResourceAsStream("/.properties"));
+    public void iniciar() { try {
+        prop.load(getClass().getResourceAsStream("/.properties"));
 
-            SSLContext sc = crearContextoSSL();
-            SSLServerSocket serverSocket = (SSLServerSocket) sc.getServerSocketFactory()
-                    .createServerSocket(Integer.parseInt(prop.getProperty("port")));
+        SSLContext sc = crearContextoSSL();
+        SSLServerSocket serverSocket = (SSLServerSocket) sc.getServerSocketFactory()
+                .createServerSocket(Integer.parseInt(prop.getProperty("port")));
 
-            System.out.println("[SERVIDOR] Esperando conexiones en puerto " + prop.getProperty("port"));
+        System.out.println("[SERVIDOR] Esperando conexiones en puerto " + prop.getProperty("port"));
 
-            while (true) {
+        while (true) {
+            try {
                 SSLSocket socket = (SSLSocket) serverSocket.accept();
 
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
@@ -53,21 +53,22 @@ public class ServerSSL {
                 System.out.println("Conexión: " + user.getNickname() + " Modo: " + mode);
 
                 if (mode == 1) {
-
                     PlayLogic logica = new PlayLogic(Word.getSecretWord(), 1);
                     new Thread(new ThreadClient(socket, 0, logica, out, in, user)).start();
                 }
                 else {
-
                     waitingList.add(new PendingPlayer(socket, out, in, user));
-
 
                     if (waitingList.size() >= 2) {
                         iniciarPartidaMultijugador();
                     }
                 }
+            } catch (Exception ex) {
+                System.err.println("Un cliente ha fallado al conectar: " + ex.getMessage());
+                // Al capturarlo aquí dentro, el servidor sigue vivo para el siguiente jugador.
             }
-        } catch (Exception e) { e.printStackTrace(); }
+        }
+    } catch (Exception e) { e.printStackTrace(); }
     }
 
     private void iniciarPartidaMultijugador() {
