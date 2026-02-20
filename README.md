@@ -1,115 +1,112 @@
 # Ahorca.do 🎮
 
-Un juego interactivo implementado en Java donde los jugadores deben adivinar palabras mientras que el tiempo se agota. ¡Intenta no caer ahorcado!
+An interactive game implemented in Java where players must guess words while time runs out. Try not to get hanged!
 
-## 📋 Descripción
+## 📋 Description
 
-**Ahorca.do** es una aplicación de escritorio del clásico juego del ahorcado (Hangman), desarrollada en Java con una interfaz gráfica moderna. El proyecto incluye lógica de juego, manejo de palabras aleatorias y un sistema de puntuación.
+**Ahorca.do** is a desktop application of the classic Hangman game, developed in Java with a modern graphical interface. The project includes game logic, word handling, and an intuitive user experience designed for entertainment and challenge.
 
-## 🛠️ Tecnologías
+## 🛠️ Technologies
 
-- **Lenguaje**: Java
-- **Gestor de Dependencias**: Maven
-- **Configuración**: pom.xml
-- **IDE Compatible**: IntelliJ IDEA (archivos .idea incluidos)
+- **Language**: Java
+- **Dependency Manager**: Maven
+- **Configuration**: pom.xml
+- **Compatible IDE**: IntelliJ IDEA (included .idea files)
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 Ahorca_do/
-├── src/                    # Código fuente del proyecto
-├── pom.xml                 # Configuración de Maven
+├── src/                    # Project source code
+├── pom.xml                 # Maven configuration
 ├── mvnw                    # Maven Wrapper (Linux/Mac)
 ├── mvnw.cmd                # Maven Wrapper (Windows)
-├── Ahorca.do.pdf           # Documentación del proyecto
-├── .gitignore              # Archivos ignorados por Git
-└── .idea/                  # Configuración de IntelliJ IDEA
+├── Ahorca.do.pdf           # Project documentation
+├── .gitignore              # Files ignored by Git
+└── .idea/                  # IntelliJ IDEA configuration
 ```
 
-## 🚀 Inicio Rápido
+## 🚀 Quick Start
 
-### Requisitos
-- Java 8 o superior
-- Maven 3.6+ (opcional, puedes usar el Maven Wrapper incluido)
+### Requirements
+- Java 8 or higher
+- Maven 3.6+ (optional, you can use the included Maven Wrapper)
 
-### Instalación
+### Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 ```bash
 git clone https://github.com/carrodeguas06/Ahorca_do.git
 cd Ahorca_do
 ```
 
-2. Compila el proyecto:
+2. Compile the project:
 
-**En Linux/Mac:**
+**On Linux/Mac:**
 ```bash
 ./mvnw clean compile
 ```
 
-**En Windows:**
+**On Windows:**
 ```bash
 mvnw.cmd clean compile
 ```
 
-O con Maven instalado:
+Or with Maven installed:
 ```bash
 mvn clean compile
 ```
 
-### Ejecución
+### Execution
 
-Para ejecutar la aplicación:
+To run the application:
 
-**En Linux/Mac:**
+**On Linux/Mac:**
 ```bash
 ./mvnw exec:java -Dexec.mainClass="com.ahorca.Main"
 ```
 
-**En Windows:**
+**On Windows:**
 ```bash
 mvnw.cmd exec:java -Dexec.mainClass="com.ahorca.Main"
 ```
 
-O con Maven:
+Or with Maven:
 ```bash
 mvn exec:java -Dexec.mainClass="com.ahorca.Main"
 ```
 
-## 🎯 Características
+## 🎯 Features
 
-- 🎮 Interfaz gráfica intuitiva
-- 📊 Sistema de puntuación
-- 🔤 Base de palabras variadas
-- ⏱️ Modo de juego desafiante
-- 🎨 Diseño moderno y responsivo
+- 🎮 Intuitive graphical interface
+- 📊 Scoring system
+- 🔤 Varied word database
+- ⏱️ Challenging game mode
+- 🎨 Modern and responsive design
 
-## 📚 Documentación
+## 📚 Documentation
 
-Consulta el archivo `Ahorca.do.pdf` para obtener más información sobre el diseño y especificaciones del proyecto.
+Consult the `Ahorca.do.pdf` file for more information about the project design and specifications.
 
-## 🤝 Contribuciones
+## 🤝 Contributions
 
-Las contribuciones son bienvenidas. Para cambios importantes:
+Contributions are welcome. For major changes:
 
-1. Fork el repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+1. Fork the repository
+2. Create a branch for your feature (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📝 Licencia
+## 📝 License
 
-Este proyecto está disponible bajo licencia abierta. Consulta el repositorio para más detalles.
+This project is available under an open license. Check the repository for more details.
 
-## 👤 Autor
+## 👥 Authors
 
-**carrodeguas06** - [GitHub Profile](https://github.com/carrodeguas06)
-
-## 📞 Contacto
-
-Si tienes preguntas o sugerencias, no dudes en abrir un issue en el repositorio.
+- **carrodeguas06** - [GitHub Profile](https://github.com/carrodeguas06)
+- **Nico23-sys** - [GitHub Profile](https://github.com/Nico23-sys)
 
 ---
 
-**Última actualización**: Febrero 2026
+**Last update**: February 2026
