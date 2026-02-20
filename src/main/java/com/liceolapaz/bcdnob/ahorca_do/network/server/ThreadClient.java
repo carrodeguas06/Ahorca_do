@@ -64,7 +64,6 @@ public class ThreadClient implements Runnable {
                         play.cancelPlay();
                         synchronized (play) { play.notifyAll(); }
                     } else {
-                        // --- ¡LA LÍNEA QUE FALTABA! Avisa al otro jugador del turno ---
                         synchronized (play) { play.notifyAll(); }
                     }
                 }

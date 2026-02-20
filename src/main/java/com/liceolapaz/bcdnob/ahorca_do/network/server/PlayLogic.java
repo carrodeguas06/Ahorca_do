@@ -14,7 +14,6 @@ public class PlayLogic {
 
     public PlayLogic(String palabra, int numJugadores) {
         this.nPlayers = numJugadores;
-        // Chivato en consola
         System.out.println("=========================================");
         System.out.println("[SERVIDOR] NUEVA PARTIDA GENERADA");
         System.out.println("[SERVIDOR] PALABRA SECRETA: " + palabra.toUpperCase());
@@ -28,7 +27,6 @@ public class PlayLogic {
         this.progress = "_".repeat(secretWord.length());
         this.failedLettersStr.setLength(0);
 
-        // CALCULO DE VIDAS: Mitad de la longitud, mínimo 1
         int vidasIniciales = Math.max(1, secretWord.length() / 2);
 
         for (int i = 0; i < nPlayers; i++) {

@@ -6,9 +6,7 @@ public enum AppView {
     REGISTER("/com/liceolapaz/bcdnob/ahorca_do/register-view.fxml", "Registrate"),
     LOGIN("/com/liceolapaz/bcdnob/ahorca_do/logIn-view.fxml", "Iniciar Sesión"),
     MENU("/com/liceolapaz/bcdnob/ahorca_do/menu-view.fxml", "Menú de juego"),
-
-    GAME("/com/liceolapaz/bcdnob/ahorca_do/game-view.fxml", "Pantalla juego")
-
+    GAME("/com/liceolapaz/bcdnob/ahorca_do/game-view.fxml", "Pantalla juego"),
     ;
 
 

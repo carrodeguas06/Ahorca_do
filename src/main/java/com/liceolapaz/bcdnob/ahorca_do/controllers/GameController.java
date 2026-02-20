@@ -32,14 +32,13 @@ public class GameController implements Initializable {
 
     private ClientTCP client;
     private boolean escuchando = true;
-    private boolean partidaIniciada = false; // NUEVO: Controla si ya estamos en partida
+    private boolean partidaIniciada = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         User currentUser = AppShell.getInstance().getCurrentUser();
         lblNombreJugador1.setText(currentUser.getNickname());
 
-        // BLOQUEO INICIAL: No se puede escribir hasta que el servidor avise
         txtLetra.setDisable(true);
         btnEnviar.setDisable(true);
 
@@ -70,7 +69,6 @@ public class GameController implements Initializable {
                     PlayState estado = (PlayState) recibido;
 
                     Platform.runLater(() -> {
-                        // Si es el primer mensaje en multijugador, ¡ya estamos conectados!
                         if (!partidaIniciada && AppShell.getInstance().getGameMode() == 2) {
                             lblNombreJugador2.setText("¡Conectado!");
                             partidaIniciada = true;
